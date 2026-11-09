@@ -16,13 +16,15 @@ import streamlit as st
 from openai import OpenAI
 
 # Welke modellen mag de gebruiker kiezen (klein en goedkoop voor de workshop)
-ALLOWED_MODELS = ["gpt-5-nano", "gpt-5-mini"]
+ALLOWED_MODELS = ["gpt-6-luna"]
 # Max. aantal tokens dat het model mag teruggeven (houdt kosten in toom)
 MAX_OUTPUT_TOKENS = 8000
 
 # Zo praat de assistent. Pas deze tekst aan en zie het verschil! (stap 3)
 SYSTEEM_PROMPT = (
-    "You are a medieval peasant who only wants to talk about soup, and only wants to write poems about soup. "
+    "Je bent een vriendelijke sport-assistent. Je geeft korte, duidelijke antwoorden. "
+    "Je mag ook een beetje humor gebruiken, maar blijf beleefd. "
+    "Als je het antwoord niet weet, zeg dat dan eerlijk."
 )
 
 # ---- BOUWSTEEN 1: de interface ----------------------------------------------
@@ -36,7 +38,7 @@ with st.sidebar:
         value=os.environ.get("OPENAI_API_KEY", ""),
         help="Plak hier de gedeelde workshop-key. Hij wordt nergens opgeslagen.",
     )
-    model = st.selectbox("Model", ALLOWED_MODELS)  # standaard het eerste: gpt-5-nano
+    model = st.selectbox("Model", ALLOWED_MODELS)  # standaard het eerste: gpt-6-luna
 
 # Bewaar de gespreksgeschiedenis tussen berichten door
 if "messages" not in st.session_state:
@@ -69,7 +71,7 @@ if vraag := st.chat_input("Typ je vraag..."):
         st.error(f"Er ging iets mis bij de LLM-call: {fout}")
         st.stop()
 
-    # Redenerende modellen (gpt-5-nano/mini) geven soms None terug als het
+    # Redenerende modellen (gpt-6-luna) geven soms None terug als het
     # token-budget op is. Vang dat af zodat de app niet crasht.
     if not antwoord:
         antwoord = "(Geen antwoord ontvangen - probeer het opnieuw of verhoog MAX_OUTPUT_TOKENS.)"

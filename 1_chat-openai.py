@@ -10,7 +10,7 @@ load_dotenv()          # leest OPENAI_API_KEY uit .env / je omgeving
 client = OpenAI()      # pakt OPENAI_API_KEY automatisch op
 
 stream = client.responses.create(
-    model="gpt-5-mini",
+    model="gpt-6-luna",
     input=[
         {
             "role": "user",
