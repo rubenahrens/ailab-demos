@@ -1,0 +1,16 @@
+curl.exe https://api.openai.com/v1/responses `
+  -H "Content-Type: application/json" `
+  -H "Authorization: Bearer $env:OPENAI_API_KEY" `
+  -d '{\"model\": \"gpt-6-luna\", \"input\": \"Write a bedtime story about the Netherlands winning the 2026 world cup.\"}'
+
+
+Dit is hetzelfde commando als in 0_curl-command.txt, maar dan geschikt voor Windows PowerShell.
+Zet eerst je key in de terminal:  $env:OPENAI_API_KEY = "sk-..."
+
+De verschillen met de macOS/Linux-versie:
+• curl.exe in plaats van curl: in Windows PowerShell is "curl" een alias voor Invoke-WebRequest, dat andere opties verwacht. Met curl.exe roep je het echte curl-programma aan (standaard aanwezig in Windows 10/11).
+• ` (backtick) in plaats van \ aan het eind van een regel: zo zeg je in PowerShell dat het commando op de volgende regel doorloopt.
+• $env:OPENAI_API_KEY in plaats van $OPENAI_API_KEY: zo lees je in PowerShell een omgevingsvariabele uit.
+• \" binnen de JSON: Windows PowerShell haalt anders de aanhalingstekens weg voordat curl.exe de data krijgt, waardoor de JSON ongeldig wordt.
+
+Zie 0_curl-command.txt voor de uitleg van de onderdelen van het commando zelf.
