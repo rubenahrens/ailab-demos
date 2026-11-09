@@ -1,12 +1,14 @@
-# AI Impact Lab — demo scripts (sessie 4)
+# AI Impact Lab: demo scripts (sessie 4)
 
 De voorbeeldscripts uit het mini-college **"AI in je app"**. Ze laten in drie stappen
 de bouwstenen van een AI-app zien: **interface · sleutel · LLM-call**.
 
-1. **`0_curl-command.txt`** — de kleinst mogelijke AI-call, recht vanuit je terminal (geen app).
+1. **`0_curl-command.txt`**: de kleinst mogelijke AI-call, recht vanuit je terminal (geen app).
    Gebruik je Windows PowerShell? Neem dan **`0_curl-command-powershell.txt`**.
-2. **`1_chat-openai.py`** — dezelfde call in Python, met streaming.
-3. **`2_chat.py`** — een minimale chat-app in Streamlit.
+2. **`1_chat-openai.py`**: dezelfde call in Python, met streaming.
+3. **`2_chat.py`**: een minimale chat-app in Streamlit.
+
+Alle drie gebruiken de **Chat Completions API** van OpenAI, net als de apps die je in de workshop bouwt.
 
 > Het KNVB-voorbeeld staat in een aparte repo: `ailab-llm-poc-knvb`.
 

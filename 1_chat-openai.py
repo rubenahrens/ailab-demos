@@ -9,9 +9,9 @@ from dotenv import load_dotenv
 load_dotenv()          # leest OPENAI_API_KEY uit .env / je omgeving
 client = OpenAI()      # pakt OPENAI_API_KEY automatisch op
 
-stream = client.responses.create(
+stream = client.chat.completions.create(
     model="gpt-6-luna",
-    input=[
+    messages=[
         {
             "role": "user",
             "content": "Write a bedtime story about the Netherlands winning the 2026 world cup.",
@@ -20,5 +20,6 @@ stream = client.responses.create(
     stream=True,
 )
 
-for event in stream:
-    print(event)
+for chunk in stream:
+    print(chunk.choices[0].delta.content or "", end="", flush=True)
+print()

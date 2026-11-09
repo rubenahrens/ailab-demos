@@ -1,18 +1,23 @@
-curl https://api.openai.com/v1/responses \
+curl https://api.openai.com/v1/chat/completions \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $OPENAI_API_KEY" \
   -d '{
     "model": "gpt-6-luna",
-    "input": "Write a bedtime story about the Netherlands winning the 2026 world cup."
+    "messages": [{"role": "user",
+      "content": "Write a bedtime story about the Netherlands winning the 2026 world cup."}]
   }'
 
 
-Dit curl-commando wordt gebruikt om via de terminal een verzoek (request) te sturen naar de programmeerinterface (API) van OpenAI. Het doel van dit specifieke commando is om de AI een slaapverhaaltje te laten schrijven over hoe Nederland het WK voetbal in 2026 wint.
-Hier is de gedetailleerde uitleg van elk onderdeel van het commando:
-• curl: Dit is de tool zelf. Het is een command-line programma waarmee je gegevens van of naar een server kunt versturen over een netwerk (zoals het internet).
-• https://api.openai.com/v1/responses: Dit is het eindpunt (URL) van de OpenAI API waar het verzoek naartoe wordt gestuurd. (Let op: in de officiële OpenAI API documentatie is het endpoint voor tekstgeneratie meestal https://openai.com).
-• -H "Content-Type: application/json": Een 'Header' (-H) die de server vertelt dat de gegevens die je meestuurt in het JSON-formaat zijn geschreven.
-• -H "Authorization: Bearer $OPENAI_API_KEY": Een 'Header' die zorgt voor de beveiliging en authenticatie. $OPENAI_API_KEY is een variabele waarin jouw unieke, geheime API-sleutel van OpenAI staat. Zonder deze sleutel weigert de server de toegang.
-• -d '{ ... }': Dit staat voor data. Hiermee stuur je de daadwerkelijke inhoud (de 'payload') mee naar de server in JSON-formaat:
-	• "model": "gpt-6-luna": Dit geeft aan welk AI-model je wilt gebruiken (in dit geval een fictief of toekomstig model genaamd gpt-6-luna).
-	• "input": "..." (of "messages" in de echte API): Dit is de prompt, oftewel de specifieke instructie die je aan de AI meegeeft.
+Met dit curl-commando stuur je vanuit de terminal een verzoek (request) naar de API van OpenAI.
+Je vraagt de AI om een slaapverhaaltje over hoe Nederland het WK voetbal van 2026 wint.
+
+Wat elk onderdeel doet:
+• curl: een command-line programma waarmee je gegevens naar een server stuurt en het antwoord terugkrijgt.
+• https://api.openai.com/v1/chat/completions: het adres (endpoint) van de Chat Completions API van OpenAI.
+  Dit is dezelfde API die je Streamlit-app straks gebruikt.
+• -H "Content-Type: application/json": een header die zegt dat de meegestuurde gegevens JSON zijn.
+• -H "Authorization: Bearer $OPENAI_API_KEY": je sleutel. $OPENAI_API_KEY is een variabele in je terminal
+  waarin je key staat. Zonder sleutel weigert de server je verzoek.
+• -d '{ ... }': de data (payload) die je meestuurt:
+  • "model": "gpt-6-luna": welk model je gebruikt.
+  • "messages": het gesprek tot nu toe. Hier één bericht van de gebruiker ("role": "user") met je prompt als "content".
