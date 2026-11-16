@@ -1,7 +1,7 @@
-curl.exe https://api.openai.com/v1/responses `
+curl.exe https://api.openai.com/v1/chat/completions `
   -H "Content-Type: application/json" `
   -H "Authorization: Bearer $env:OPENAI_API_KEY" `
-  -d '{\"model\": \"gpt-6-luna\", \"input\": \"Write a bedtime story about the Netherlands winning the 2026 world cup.\"}'
+  -d '{\"model\": \"gpt-6-luna\", \"messages\": [{\"role\": \"user\", \"content\": \"Write a bedtime story about the Netherlands winning the 2026 world cup.\"}]}'
 
 
 Dit is hetzelfde commando als in 0_curl-command.txt, maar dan geschikt voor Windows PowerShell.
